@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Hd-f6-srn">
-                                <rect key="frame" x="153" y="414" width="109" height="69"/>
+                                <rect key="frame" x="153" y="619" width="109" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Button"/>
@@ -25,13 +25,6 @@
                                     <segue destination="e4I-eb-Rgq" kind="show" id="wov-uv-gyv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="giriş" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khv-Nu-lr6">
-                                <rect key="frame" x="171" y="205" width="32" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -39,7 +32,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-252.17391304347828" y="99.776785714285708"/>
+            <point key="canvasLocation" x="-252.17391304347828" y="99.456521739130437"/>
         </scene>
         <!--Takvim-->
         <scene sceneID="pJV-iW-Ewj">
@@ -48,6 +41,18 @@
                     <view key="view" contentMode="scaleToFill" id="AY2-rX-GgB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="clI-gi-4qy" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="364"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="firstWeekday">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="avX-uY-div"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -55,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RZX-fk-wl8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1816" y="505"/>
+            <point key="canvasLocation" x="1815.9420289855075" y="504.61956521739137"/>
         </scene>
         <!--Ödemeler-->
         <scene sceneID="VpR-L0-3OU">
@@ -92,6 +97,7 @@
                     <navigationItem key="navigationItem" title="Ödemeler" id="KXD-Bd-upO"/>
                     <connections>
                         <outlet property="tableView" destination="M3Y-eQ-Yrl" id="SQG-N9-0uF"/>
+                        <outlet property="toplamLabel" destination="PuL-JH-EdF" id="tNp-jq-I6c"/>
                         <segue destination="sgU-de-q1T" kind="show" identifier="toPaymentDetail" id="gp7-jq-gJn"/>
                     </connections>
                 </viewController>
@@ -107,40 +113,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ödeme Türü" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2p-S4-LYX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ödeme Türü" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2p-S4-LYX">
                                 <rect key="frame" x="141" y="53" width="133" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="mW2-UE-JaI"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Açıklama" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XH8-b7-pBI">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Açıklama" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XH8-b7-pBI">
                                 <rect key="frame" x="20" y="96" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="kUf-Rl-Ugm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ödenecek Tutar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKn-eY-DET">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Ödenecek Tutar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKn-eY-DET">
                                 <rect key="frame" x="141" y="140" width="133" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="ZzR-bl-lka"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tutar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RVT-Xz-2dK">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tutar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RVT-Xz-2dK">
                                 <rect key="frame" x="20" y="183" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="fWh-Zj-Hfi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="fHa-Ik-meg">
-                                <rect key="frame" x="54" y="234" width="306" height="334"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="fHa-Ik-meg">
+                                <rect key="frame" x="54" y="234" width="320" height="342"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="342" id="IXN-1c-j5j"/>
+                                </constraints>
                                 <locale key="locale" localeIdentifier="tr_TR"/>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVU-ry-Mmk">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVU-ry-Mmk">
                                 <rect key="frame" x="164" y="620" width="87" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Kaydet"/>
                                 <connections>
@@ -150,6 +165,27 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DVo-lc-o48"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="DVo-lc-o48" firstAttribute="bottom" secondItem="iVU-ry-Mmk" secondAttribute="bottom" constant="12" id="4Wt-XF-Vtq"/>
+                            <constraint firstItem="XH8-b7-pBI" firstAttribute="trailing" secondItem="yAw-bY-kLe" secondAttribute="trailingMargin" id="5gd-hh-7vl"/>
+                            <constraint firstItem="Z2p-S4-LYX" firstAttribute="centerX" secondItem="XH8-b7-pBI" secondAttribute="centerX" id="8BV-Hc-FRN"/>
+                            <constraint firstItem="Z2p-S4-LYX" firstAttribute="trailing" secondItem="yKn-eY-DET" secondAttribute="trailing" id="FtA-QJ-NUk"/>
+                            <constraint firstItem="fHa-Ik-meg" firstAttribute="top" secondItem="RVT-Xz-2dK" secondAttribute="bottom" constant="17" id="Kly-IX-PPh"/>
+                            <constraint firstItem="yKn-eY-DET" firstAttribute="top" secondItem="XH8-b7-pBI" secondAttribute="bottom" constant="10" id="Oui-eN-Mtb"/>
+                            <constraint firstItem="XH8-b7-pBI" firstAttribute="leading" secondItem="yAw-bY-kLe" secondAttribute="leadingMargin" id="WzD-dl-ICZ"/>
+                            <constraint firstItem="Z2p-S4-LYX" firstAttribute="leading" secondItem="yKn-eY-DET" secondAttribute="leading" id="Xsh-xg-Msb"/>
+                            <constraint firstItem="DVo-lc-o48" firstAttribute="trailing" secondItem="fHa-Ik-meg" secondAttribute="trailing" constant="40" id="YTl-YF-6CL"/>
+                            <constraint firstItem="XH8-b7-pBI" firstAttribute="top" secondItem="Z2p-S4-LYX" secondAttribute="bottom" constant="8" id="Yiu-gJ-kSH"/>
+                            <constraint firstItem="iVU-ry-Mmk" firstAttribute="top" secondItem="fHa-Ik-meg" secondAttribute="bottom" constant="44" id="Zad-ue-Y6C"/>
+                            <constraint firstItem="RVT-Xz-2dK" firstAttribute="centerX" secondItem="iVU-ry-Mmk" secondAttribute="centerX" id="Zmm-PU-W0D"/>
+                            <constraint firstItem="XH8-b7-pBI" firstAttribute="trailing" secondItem="RVT-Xz-2dK" secondAttribute="trailing" id="abO-GH-5dJ"/>
+                            <constraint firstItem="fHa-Ik-meg" firstAttribute="leading" secondItem="DVo-lc-o48" secondAttribute="leading" constant="54" id="en0-Fx-JCH"/>
+                            <constraint firstItem="Z2p-S4-LYX" firstAttribute="top" secondItem="yAw-bY-kLe" secondAttribute="topMargin" constant="-3" id="geY-Pa-2HL"/>
+                            <constraint firstItem="XH8-b7-pBI" firstAttribute="leading" secondItem="RVT-Xz-2dK" secondAttribute="leading" id="loM-Dr-49n"/>
+                            <constraint firstItem="iVU-ry-Mmk" firstAttribute="leading" secondItem="DVo-lc-o48" secondAttribute="leading" constant="164" id="oVI-4i-Id5"/>
+                            <constraint firstItem="Z2p-S4-LYX" firstAttribute="leading" secondItem="DVo-lc-o48" secondAttribute="leading" constant="141" id="p88-Rn-cfu"/>
+                            <constraint firstItem="RVT-Xz-2dK" firstAttribute="top" secondItem="yKn-eY-DET" secondAttribute="bottom" constant="8" id="y5r-j3-asV"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ödeme Bilgileri" id="u47-aw-17D"/>
                     <connections>
@@ -206,6 +242,9 @@
         <image name="sum" catalog="system" width="102" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

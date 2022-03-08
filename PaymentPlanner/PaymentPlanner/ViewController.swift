@@ -10,11 +10,11 @@ import CoreData
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tableView2: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
-
 
 }
 

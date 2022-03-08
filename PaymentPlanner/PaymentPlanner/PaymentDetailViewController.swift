@@ -14,15 +14,70 @@ class PaymentDetailViewController: UIViewController {
     @IBOutlet weak var priceLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    var chosenPayment = ""
+    var chosenPaymentId : UUID?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       // priceLabel.keyboardType = .numberPad
+        
+       // let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+       // view.addGestureRecognizer(gestureRecognizer)
+        
+        if chosenPayment != "" {
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
+            let idString = chosenPaymentId?.uuidString
+            
+            fetchRequest.predicate = NSPredicate(format: "id = %@", idString!)
+            fetchRequest.returnsObjectsAsFaults = false
+            
+            do{
+                
+                let results = try context.fetch(fetchRequest)
+                
+                if results.count > 0 {
+                    
+                    for result in results as! [NSManagedObject] {
+                        
+                        if let description = result.value(forKey: "paymentType") as? String {
+                            descriptionLabel.text = description
+                        }
+                        
+                        if let price = result.value(forKey: "price") as? String {
+                            priceLabel.text = String(price)
+                        }
+                        
+                        if let date = result.value(forKey: "date") as? Date {
+                            datePicker.date = date
+                        }
+                        
+                    }
+                }
+                
+            } catch {
+                print("error")
+            }
+        } else {
+            descriptionLabel.text = ""
+            priceLabel.text = ""
+        }
+        
+        
+    }
+    
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 
     @IBAction func saveButtonClicked(_ sender: Any) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        
         let newPayment = NSEntityDescription.insertNewObject(forEntityName: "PaymentDB", into: context)
         
         newPayment.setValue(descriptionLabel.text!, forKey: "paymentType")
@@ -41,5 +96,4 @@ class PaymentDetailViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         
     }
-    
 }
