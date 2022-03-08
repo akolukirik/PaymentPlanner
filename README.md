@@ -1,2 +1,0 @@
-# PaymentPlanner
-Payment Planner App

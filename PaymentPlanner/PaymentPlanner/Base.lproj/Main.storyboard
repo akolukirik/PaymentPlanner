@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PaymentPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Hd-f6-srn">
+                                <rect key="frame" x="153" y="414" width="109" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <connections>
+                                    <segue destination="e4I-eb-Rgq" kind="show" id="wov-uv-gyv"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="giriş" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khv-Nu-lr6">
+                                <rect key="frame" x="171" y="205" width="32" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-252.17391304347828" y="99.776785714285708"/>
+        </scene>
+        <!--Takvim-->
+        <scene sceneID="pJV-iW-Ewj">
+            <objects>
+                <viewController id="Zfa-wM-ZfJ" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AY2-rX-GgB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="avX-uY-div"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Takvim" image="calendar" catalog="system" id="cdD-RM-88X"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RZX-fk-wl8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1816" y="505"/>
+        </scene>
+        <!--Ödemeler-->
+        <scene sceneID="VpR-L0-3OU">
+            <objects>
+                <viewController id="AxJ-uf-is1" customClass="PaymentListViewController" customModule="PaymentPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Ts-ry-KCO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="M3Y-eQ-Yrl">
+                                <rect key="frame" x="0.0" y="56" width="414" height="581"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <sections/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toplam Borç: XXXX    ----" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PuL-JH-EdF">
+                                <rect key="frame" x="0.0" y="663" width="414" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kBU-Ed-ode"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="kBU-Ed-ode" firstAttribute="trailing" secondItem="PuL-JH-EdF" secondAttribute="trailing" id="0Ug-QP-IVI"/>
+                            <constraint firstItem="PuL-JH-EdF" firstAttribute="leading" secondItem="kBU-Ed-ode" secondAttribute="leading" id="5cp-2W-JOo"/>
+                            <constraint firstItem="M3Y-eQ-Yrl" firstAttribute="leading" secondItem="kBU-Ed-ode" secondAttribute="leading" id="RjW-c6-1bj"/>
+                            <constraint firstItem="M3Y-eQ-Yrl" firstAttribute="top" secondItem="kBU-Ed-ode" secondAttribute="top" id="k4X-fF-xYt"/>
+                            <constraint firstItem="kBU-Ed-ode" firstAttribute="bottom" secondItem="M3Y-eQ-Yrl" secondAttribute="bottom" constant="50" id="pUs-fb-rfI"/>
+                            <constraint firstItem="kBU-Ed-ode" firstAttribute="trailing" secondItem="M3Y-eQ-Yrl" secondAttribute="trailing" id="uzu-bS-Lwv"/>
+                            <constraint firstItem="kBU-Ed-ode" firstAttribute="bottom" secondItem="PuL-JH-EdF" secondAttribute="bottom" id="yDt-KC-rVm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ödemeler" id="KXD-Bd-upO"/>
+                    <connections>
+                        <outlet property="tableView" destination="M3Y-eQ-Yrl" id="SQG-N9-0uF"/>
+                        <segue destination="sgU-de-q1T" kind="show" identifier="toPaymentDetail" id="gp7-jq-gJn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zjq-2j-NGl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2723.1884057971015" y="-177.71739130434784"/>
+        </scene>
+        <!--Ödeme Bilgileri-->
+        <scene sceneID="0Lj-2X-OdC">
+            <objects>
+                <viewController id="sgU-de-q1T" customClass="PaymentDetailViewController" customModule="PaymentPlanner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yAw-bY-kLe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ödeme Türü" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z2p-S4-LYX">
+                                <rect key="frame" x="141" y="53" width="133" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Açıklama" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XH8-b7-pBI">
+                                <rect key="frame" x="20" y="96" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ödenecek Tutar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKn-eY-DET">
+                                <rect key="frame" x="141" y="140" width="133" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tutar" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RVT-Xz-2dK">
+                                <rect key="frame" x="20" y="183" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="fHa-Ik-meg">
+                                <rect key="frame" x="54" y="234" width="306" height="334"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <locale key="locale" localeIdentifier="tr_TR"/>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVU-ry-Mmk">
+                                <rect key="frame" x="164" y="620" width="87" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Kaydet"/>
+                                <connections>
+                                    <action selector="saveButtonClicked:" destination="sgU-de-q1T" eventType="touchUpInside" id="Q5f-L9-e6G"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DVo-lc-o48"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Ödeme Bilgileri" id="u47-aw-17D"/>
+                    <connections>
+                        <outlet property="datePicker" destination="fHa-Ik-meg" id="Wa8-4E-RVt"/>
+                        <outlet property="descriptionLabel" destination="XH8-b7-pBI" id="Ozb-gE-ywx"/>
+                        <outlet property="priceLabel" destination="RVT-Xz-2dK" id="gvV-wX-XA4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Flz-IF-ERI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3713.04347826087" y="-178.53260869565219"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="cMq-7t-buj">
+            <objects>
+                <tabBarController modalPresentationStyle="fullScreen" id="e4I-eb-Rgq" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ew3-CI-lFR"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kzA-NW-Mkf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="DdH-Zw-quB" kind="relationship" relationship="viewControllers" id="XbI-Wj-uw4"/>
+                        <segue destination="Zfa-wM-ZfJ" kind="relationship" relationship="viewControllers" id="0Zu-0U-WdR"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s1z-iL-Lq1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="730" y="100"/>
+        </scene>
+        <!--Ödemeler-->
+        <scene sceneID="tZJ-qV-q4o">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DdH-Zw-quB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Ödemeler" image="sum" catalog="system" id="Cny-80-Seg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="o8J-Er-5Mi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AxJ-uf-is1" kind="relationship" relationship="rootViewController" id="ZvE-P9-Lkw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IKv-k3-9d9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1815.9420289855075" y="-177.71739130434784"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="sum" catalog="system" width="102" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
