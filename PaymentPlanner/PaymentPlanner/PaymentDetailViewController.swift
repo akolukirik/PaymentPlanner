@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class PaymentDetailViewController: UIViewController {
-
+    
     @IBOutlet weak var descriptionLabel: UITextField!
     @IBOutlet weak var priceLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -19,11 +19,6 @@ class PaymentDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       // priceLabel.keyboardType = .numberPad
-        
-       // let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-       // view.addGestureRecognizer(gestureRecognizer)
         
         if chosenPayment != "" {
             
@@ -55,7 +50,6 @@ class PaymentDetailViewController: UIViewController {
                         if let date = result.value(forKey: "date") as? Date {
                             datePicker.date = date
                         }
-                        
                     }
                 }
                 
@@ -67,13 +61,11 @@ class PaymentDetailViewController: UIViewController {
             priceLabel.text = ""
         }
         
+        //  let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        //  view.addGestureRecognizer(gestureRecognizer)
         
     }
     
-    @objc func hideKeyboard() {
-        view.endEditing(true)
-    }
-
     @IBAction func saveButtonClicked(_ sender: Any) {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -88,12 +80,19 @@ class PaymentDetailViewController: UIViewController {
         do {
             try context.save()
             print("uldi")
+            print(datePicker.date)
         } catch  {
             print("aglaaa")
         }
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
         self.navigationController?.popViewController(animated: true)
+        
+    }
+    
+    @objc func hideKeyboard() {
+        
+        view.endEditing(true)
         
     }
 }

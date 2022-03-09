@@ -28,11 +28,10 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
         navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonClicked))
         
         getData()
-        totalPriceCalculate()
+    totalPriceCalculate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name(rawValue: "newData"), object: nil)
       totalPriceCalculate()
     }
@@ -141,14 +140,22 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
                 print("error")
             }
         }
+        totalPriceCalculateUpdate()
     }
-    
     func totalPriceCalculate() {
         var total = 0
-        for x in 0...totalPriceArray.count-1 {
-            total += Int(totalPriceArray[x])!
+        for x in 0..<totalPriceArray.count {
+            total += Int(totalPriceArray[x]) ?? 0
         }
-        toplamLabel.text = ("Toplam Borç: \(String(total))   ")
+        toplamLabel.text = ("Toplam Borç: \(String(total)) ₺")
+    }
+    
+    func totalPriceCalculateUpdate() {
+        var total = 0
+        for x in 0..<totalPriceArray.count-1 {
+            total += Int(totalPriceArray[x]) ?? 0
+        }
+        toplamLabel.text = ("Toplam Borç: \(String(total)) ₺")
     }
     
 }
