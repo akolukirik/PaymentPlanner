@@ -10,9 +10,10 @@ import CoreData
 
 class PaymentListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var paymentArray = [String]()
     var idArray = [UUID]()
-    var totalPriceArray = [String]()
+    var paymentArray = [String]()
+    var priceArray = [String]()
+    var dateArray = [Date]()
     var selectedPayment = ""
     var selectedPaymentId : UUID?
     
@@ -25,15 +26,19 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.delegate = self
         tableView.dataSource = self
         
-        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addButtonClicked))
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonItem.SystemItem.add,
+            target: self,
+            action: #selector(addButtonClicked))
         
         getData()
-    totalPriceCalculate()
+        totalPriceCalculate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name(rawValue: "newData"), object: nil)
-      totalPriceCalculate()
+        totalPriceCalculate()
     }
     
     @objc func addButtonClicked() {
@@ -46,25 +51,23 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = paymentArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! PaymentDetailTableViewCell
+        cell.priceTypeLabel.text = paymentArray[indexPath.row]
+        cell.priceLabel.text = ("\(priceArray[indexPath.row]) ₺ ")
         return cell
     }
     
     @objc func getData() {
-        
         paymentArray.removeAll(keepingCapacity: false)
         idArray.removeAll(keepingCapacity: false)
-        totalPriceArray.removeAll(keepingCapacity: false)
+        priceArray.removeAll(keepingCapacity: false)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
         fetchRequest.returnsObjectsAsFaults = false
         
-        do {
-            let results = try context.fetch(fetchRequest)
+        if let results = try? context.fetch(fetchRequest) {
             if results.count > 0 {
                 for result in results as! [NSManagedObject] {
                     if let payment = result.value(forKey: "paymentType") as? String {
@@ -74,15 +77,15 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
                         self.idArray.append(id)
                     }
                     if let price = result.value(forKey: "price") as? String {
-                        self.totalPriceArray.append(price)
+                        self.priceArray.append(price)
+                    }
+                    if let date = result.value(forKey: "date") as? Date {
+                        self.dateArray.append(date)
                     }
                     self.tableView.reloadData()
                 }
             }
-        } catch {
-            print("erroorrrrr")
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -91,6 +94,7 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
             destinationVC.chosenPayment = selectedPayment
             destinationVC.chosenPaymentId = selectedPaymentId
         }
+        selectedPaymentId = nil
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -102,7 +106,6 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
@@ -114,20 +117,15 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
             do {
                 let results = try context.fetch(fetchRequest)
                 if results.count > 0 {
-                    
                     for result in results as! [NSManagedObject] {
-                        
                         if let id = result.value(forKey: "id") as? UUID {
-                            
                             if id == idArray[indexPath.row] {
                                 context.delete(result)
                                 paymentArray.remove(at: indexPath.row)
                                 idArray.remove(at: indexPath.row)
                                 self.tableView.reloadData()
-                                
                                 do {
                                     try context.save()
-                                    
                                 } catch {
                                     print("error")
                                 }
@@ -144,18 +142,17 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
     }
     func totalPriceCalculate() {
         var total = 0
-        for x in 0..<totalPriceArray.count {
-            total += Int(totalPriceArray[x]) ?? 0
+        for x in 0..<priceArray.count {
+            total += Int(priceArray[x]) ?? 0
         }
         toplamLabel.text = ("Toplam Borç: \(String(total)) ₺")
     }
     
     func totalPriceCalculateUpdate() {
         var total = 0
-        for x in 0..<totalPriceArray.count-1 {
-            total += Int(totalPriceArray[x]) ?? 0
+        for x in 0..<priceArray.count - 1 {
+            total += Int(priceArray[x]) ?? 0
         }
         toplamLabel.text = ("Toplam Borç: \(String(total)) ₺")
     }
-    
 }

@@ -15,7 +15,10 @@ class CalendarDetailViewController: UIViewController, FSCalendarDataSource, FSCa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let calendar = FSCalendar(frame: CGRect(x: 10, y: 50, width: 400, height: 400))
+        let calendar = FSCalendar(frame: CGRect(x: 10,
+                                                y: 50,
+                                                width: 400,
+                                                height: 400))
         calendar.dataSource = self
         calendar.delegate = self
         view.addSubview(calendar)
@@ -23,14 +26,16 @@ class CalendarDetailViewController: UIViewController, FSCalendarDataSource, FSCa
        
     }
     
-    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date,
+                  at monthPosition: FSCalendarMonthPosition) {
         formatter.dateFormat = "yyyy-MM-dd"
-        print(formatter.string(from: date))
+       // print(formatter.string(from: date))
     }
     
-    func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
+    func calendar(_ calendar: FSCalendar, didDeselect date: Date,
+                  at monthPosition: FSCalendarMonthPosition) {
         formatter.dateFormat = "yyyy-MM-dd"
-        print(formatter.string(from: date))
+        //print(formatter.string(from: date))
     }
     
 }

@@ -15,84 +15,80 @@ class PaymentDetailViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var chosenPayment = ""
-    var chosenPaymentId : UUID?
+    var chosenPaymentId: UUID?
+    lazy var selectedObject: NSManagedObject? = {
+        return prepareSelectedObject()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if chosenPayment != "" {
-            
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let context = appDelegate.persistentContainer.viewContext
-            
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
-            let idString = chosenPaymentId?.uuidString
-            
-            fetchRequest.predicate = NSPredicate(format: "id = %@", idString!)
-            fetchRequest.returnsObjectsAsFaults = false
-            
-            do{
-                
-                let results = try context.fetch(fetchRequest)
-                
-                if results.count > 0 {
-                    
-                    for result in results as! [NSManagedObject] {
-                        
-                        if let description = result.value(forKey: "paymentType") as? String {
-                            descriptionLabel.text = description
-                        }
-                        
-                        if let price = result.value(forKey: "price") as? String {
-                            priceLabel.text = String(price)
-                        }
-                        
-                        if let date = result.value(forKey: "date") as? Date {
-                            datePicker.date = date
-                        }
-                    }
-                }
-                
-            } catch {
-                print("error")
+
+        descriptionLabel.text = ""
+        priceLabel.text = ""
+
+        if let selectedObject = selectedObject {
+            if let description = selectedObject.value(forKey: "paymentType") as? String {
+                descriptionLabel.text = description
             }
-        } else {
-            descriptionLabel.text = ""
-            priceLabel.text = ""
+
+            if let price = selectedObject.value(forKey: "price") as? String {
+                priceLabel.text = String(price)
+            }
+
+            if let date = selectedObject.value(forKey: "date") as? Date {
+                datePicker.date = date
+            }
         }
         
-        //  let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        //  view.addGestureRecognizer(gestureRecognizer)
-        
+    }
+
+    func prepareSelectedObject() -> NSManagedObject? {
+        guard let chosenPaymentId = chosenPaymentId else {
+            return nil
+        }
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
+        let idString = chosenPaymentId.uuidString
+
+        fetchRequest.predicate = NSPredicate(format: "id = %@", idString)
+        fetchRequest.returnsObjectsAsFaults = false
+
+        guard let results = try? context.fetch(fetchRequest) else { return nil }
+
+        return results.first as? NSManagedObject
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
-        let newPayment = NSEntityDescription.insertNewObject(forEntityName: "PaymentDB", into: context)
-        
-        newPayment.setValue(descriptionLabel.text!, forKey: "paymentType")
-        newPayment.setValue(priceLabel.text!, forKey: "price")
-        newPayment.setValue(datePicker.date, forKey: "date")
-        newPayment.setValue(UUID(), forKey: "id")
+
+        let paymentObject: NSManagedObject
+        if let selectedObject = selectedObject {
+            paymentObject = selectedObject
+            paymentObject.setValue(chosenPaymentId, forKey: "id")
+        } else {
+            paymentObject = NSEntityDescription.insertNewObject(forEntityName: "PaymentDB", into: context)
+            paymentObject.setValue(UUID(), forKey: "id")
+        }
+
+
+        paymentObject.setValue(descriptionLabel.text, forKey: "paymentType")
+        paymentObject.setValue(priceLabel.text, forKey: "price")
+        paymentObject.setValue(datePicker.date, forKey: "date")
         
         do {
             try context.save()
             print("uldi")
-            print(datePicker.date)
+            // print(datePicker.date)
         } catch  {
             print("aglaaa")
         }
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
         self.navigationController?.popViewController(animated: true)
-        
-    }
-    
-    @objc func hideKeyboard() {
-        
-        view.endEditing(true)
         
     }
 }
