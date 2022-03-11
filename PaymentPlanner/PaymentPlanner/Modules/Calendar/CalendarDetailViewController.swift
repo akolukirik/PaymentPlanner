@@ -38,9 +38,9 @@ class CalendarDetailViewController: UIViewController, FSCalendarDataSource, FSCa
         //print(formatter.string(from: date))
     }
 
-    var datesWithEvent = ["2022-10-03", "2022-10-06", "2022-10-12", "2022-10-25"]
+    var datesWithEvent = ["2022-03-01", "2022-03-03", "2022-03-12", "2022-03-23"]
 
-    var datesWithMultipleEvents = ["2015-10-08", "2015-10-16", "2015-10-20", "2015-10-28"]
+    var datesWithMultipleEvents = ["2022-03-25", "2022-03-26", "2022-03-27", "2022-03-28"]
 
     fileprivate lazy var dateFormatter2: DateFormatter = {
         let formatter = DateFormatter()
@@ -57,7 +57,7 @@ class CalendarDetailViewController: UIViewController, FSCalendarDataSource, FSCa
         }
 
         if self.datesWithMultipleEvents.contains(dateString) {
-            return 3
+            return 2
         }
 
         return 0

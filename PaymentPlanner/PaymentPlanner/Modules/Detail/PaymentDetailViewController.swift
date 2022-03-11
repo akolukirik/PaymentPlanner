@@ -39,6 +39,9 @@ class PaymentDetailViewController: UIViewController {
                 datePicker.date = date
             }
         }
+
+       // let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+       // view.addGestureRecognizer(tap)
         
     }
 
@@ -91,4 +94,8 @@ class PaymentDetailViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
         
     }
+
+    /*@objc func hideKeyboard() {
+        view.endEditing(true)
+    }*/
 }

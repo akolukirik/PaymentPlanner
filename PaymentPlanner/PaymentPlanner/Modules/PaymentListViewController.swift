@@ -22,7 +22,7 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -52,8 +52,12 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! PaymentDetailTableViewCell
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
         cell.priceTypeLabel.text = paymentArray[indexPath.row]
         cell.priceLabel.text = ("\(priceArray[indexPath.row]) ₺ ")
+        cell.dateLabel.text = formatter.string(from: dateArray[indexPath.row])
         return cell
     }
     
@@ -140,12 +144,14 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
         }
         totalPriceCalculateUpdate()
     }
+
     func totalPriceCalculate() {
         var total = 0
         for x in 0..<priceArray.count {
             total += Int(priceArray[x]) ?? 0
         }
-        toplamLabel.text = ("Toplam Borç: \(String(total)) ₺")
+        toplamLabel.text = ("TOPLAM: \(String(total)) ₺")
+        print(dateArray)
     }
     
     func totalPriceCalculateUpdate() {
@@ -153,6 +159,6 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
         for x in 0..<priceArray.count - 1 {
             total += Int(priceArray[x]) ?? 0
         }
-        toplamLabel.text = ("Toplam Borç: \(String(total)) ₺")
+        toplamLabel.text = ("TOPLAM: \(String(total)) ₺")
     }
 }
