@@ -65,6 +65,7 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
         paymentArray.removeAll(keepingCapacity: false)
         idArray.removeAll(keepingCapacity: false)
         priceArray.removeAll(keepingCapacity: false)
+        dateArray.removeAll(keepingCapacity: false)
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -127,6 +128,7 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
                                 context.delete(result)
                                 paymentArray.remove(at: indexPath.row)
                                 idArray.remove(at: indexPath.row)
+                                dateArray.remove(at: indexPath.row)
                                 self.tableView.reloadData()
                                 do {
                                     try context.save()
@@ -143,6 +145,8 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
             }
         }
         totalPriceCalculateUpdate()
+        print(totalPriceCalculateUpdate())
+        print(dateArray)
     }
 
     func totalPriceCalculate() {
@@ -160,5 +164,12 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
             total += Int(priceArray[x]) ?? 0
         }
         toplamLabel.text = ("TOPLAM: \(String(total)) ₺")
+    }
+
+    @IBAction func dasdasdadsasdasd(_ sender: Any) {
+        print("\n\n\n\n")
+        print("**********")
+        print(dateArray.sorted())
+        print("**********")
     }
 }

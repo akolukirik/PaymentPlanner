@@ -13,8 +13,6 @@ class PaymentDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var button: UIButton!
 
-    // private var isSaved: Bool = false
-
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -22,8 +20,4 @@ class PaymentDetailTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    /*
-     func setSaveButtonColor(isSaved: Bool) {
-     button.tintColor = isSaved ? .systemBlue : .lightGray
-     }*/
 }
