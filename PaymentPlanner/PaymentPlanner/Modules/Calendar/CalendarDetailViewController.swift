@@ -7,14 +7,23 @@
 
 import UIKit
 import FSCalendar
+import CoreData
 
 class CalendarDetailViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
     
     fileprivate weak var calendar: FSCalendar!
-    var formatter = DateFormatter()
+
+    fileprivate lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter
+    }()
+
+    var dateArray = [Date]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let calendar = FSCalendar(frame: CGRect(x: 10,
                                                 y: 50,
                                                 width: 400,
@@ -23,45 +32,41 @@ class CalendarDetailViewController: UIViewController, FSCalendarDataSource, FSCa
         calendar.delegate = self
         view.addSubview(calendar)
         self.calendar = calendar
-       
-    }
-    
-    func calendar(_ calendar: FSCalendar, didSelect date: Date,
-                  at monthPosition: FSCalendarMonthPosition) {
-        formatter.dateFormat = "yyyy-MM-dd"
-       // print(formatter.string(from: date))
-    }
-    
-    func calendar(_ calendar: FSCalendar, didDeselect date: Date,
-                  at monthPosition: FSCalendarMonthPosition) {
-        formatter.dateFormat = "yyyy-MM-dd"
-        //print(formatter.string(from: date))
+
     }
 
-    var datesWithEvent = ["2022-03-01", "2022-03-03", "2022-03-12", "2022-03-23"]
-
-    var datesWithMultipleEvents = ["2022-03-25", "2022-03-26", "2022-03-27", "2022-03-28"]
-
-    fileprivate lazy var dateFormatter2: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
+    var datesWithEvent = ["20.03.2022"]
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
 
-        let dateString = self.dateFormatter2.string(from: date)
-
+        let dateString = self.dateFormatter.string(from: date)
         if self.datesWithEvent.contains(dateString) {
             return 1
         }
-
-        if self.datesWithMultipleEvents.contains(dateString) {
-            return 2
-        }
-
         return 0
     }
 
-    
+    @objc func getDateData() {
+
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
+        fetchRequest.returnsObjectsAsFaults = false
+
+        if let results = try? context.fetch(fetchRequest) {
+            if results.count > 0 {
+                for result in results as! [NSManagedObject] {
+                    if let date = result.value(forKey: "date") as? Date {
+                        self.dateArray.append(date)
+                    }
+                }
+            }
+        }
+    }
+
+    @IBAction func buttonClicked(_ sender: Any) {
+        print("***********")
+        print(dateArray)
+        print("***********")
+    }
 }

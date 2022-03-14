@@ -11,8 +11,7 @@ import CoreData
 import LocalAuthentication
 
 class ViewController: UIViewController {
-    
-    
+
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var accessLabel: UILabel!
@@ -20,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.passwordText.isSecureTextEntry = true
     }
+
     @IBAction func touchIdButtonClicked(_ sender: Any) {
         let authContext = LAContext()
         var error: NSError?
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
             makeAlert(titleInput: "Hata", messageInput: "Hoop nereye??")
         }
     }
-    
+
     func makeAlert(titleInput: String , messageInput: String) {
 
         let alert = UIAlertController(title: titleInput,

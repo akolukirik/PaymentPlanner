@@ -13,7 +13,10 @@ class PaymentDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UITextField!
     @IBOutlet weak var priceLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
+    @IBOutlet weak var paymentPicker: UIPickerView!
+
+    let data = ["Fatura","Maaş","AAA","BBB","CCC","XXX","YYY","ZZZ"]
+
     var chosenPayment = ""
     var chosenPaymentId: UUID?
     lazy var selectedObject: NSManagedObject? = {
@@ -23,6 +26,8 @@ class PaymentDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        paymentPicker.delegate = self
+        paymentPicker.dataSource = self
         descriptionLabel.text = ""
         priceLabel.text = ""
 
@@ -30,19 +35,15 @@ class PaymentDetailViewController: UIViewController {
             if let description = selectedObject.value(forKey: "paymentType") as? String {
                 descriptionLabel.text = description
             }
-
             if let price = selectedObject.value(forKey: "price") as? String {
                 priceLabel.text = String(price)
             }
-
             if let date = selectedObject.value(forKey: "date") as? Date {
                 datePicker.date = date
             }
         }
-
-       // let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-       // view.addGestureRecognizer(tap)
-        
+        // let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        // view.addGestureRecognizer(tap)
     }
 
     func prepareSelectedObject() -> NSManagedObject? {
@@ -76,8 +77,6 @@ class PaymentDetailViewController: UIViewController {
             paymentObject = NSEntityDescription.insertNewObject(forEntityName: "PaymentDB", into: context)
             paymentObject.setValue(UUID(), forKey: "id")
         }
-
-
         paymentObject.setValue(descriptionLabel.text, forKey: "paymentType")
         paymentObject.setValue(priceLabel.text, forKey: "price")
         paymentObject.setValue(datePicker.date, forKey: "date")
@@ -96,6 +95,23 @@ class PaymentDetailViewController: UIViewController {
     }
 
     /*@objc func hideKeyboard() {
-        view.endEditing(true)
-    }*/
+     view.endEditing(true)
+     }*/
+}
+
+extension PaymentDetailViewController: UIPickerViewDelegate {
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return data[row]
+    }
+}
+
+extension PaymentDetailViewController: UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return data.count
+    }
 }
