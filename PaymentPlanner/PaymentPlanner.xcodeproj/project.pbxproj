@@ -17,8 +17,9 @@
 		41A633B727D73CFB00D24C34 /* PaymentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A633B627D73CFB00D24C34 /* PaymentListViewController.swift */; };
 		41A633B927D73E8000D24C34 /* PaymentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A633B827D73E8000D24C34 /* PaymentDetailViewController.swift */; };
 		41A633BC27D741D100D24C34 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 41A633BB27D741D100D24C34 /* FSCalendar */; };
+		41AFA3B527E0766B008E4FD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41AFA3B427E0766B008E4FD4 /* GoogleService-Info.plist */; };
+		41AFA3B727E0992E008E4FD4 /* NewSymbolAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AFA3B627E0992E008E4FD4 /* NewSymbolAddViewController.swift */; };
 		41B8937927DA2B9900A0D5DE /* PaymentDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B8937827DA2B9900A0D5DE /* PaymentDetailTableViewCell.swift */; };
-		41C5CCFD27D8C64200D06ECF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41C5CCFC27D8C64200D06ECF /* GoogleService-Info.plist */; };
 		41C5CD0127D8C8B100D06ECF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 41C5CD0027D8C8B100D06ECF /* FirebaseAnalytics */; };
 		41C5CD0327D8C8B100D06ECF /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 41C5CD0227D8C8B100D06ECF /* FirebaseAnalyticsSwift-Beta */; };
 		41C5CD0527D8C8B100D06ECF /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 41C5CD0427D8C8B100D06ECF /* FirebaseAnalyticsWithoutAdIdSupport */; };
@@ -62,8 +63,9 @@
 		41A633B027D7392D00D24C34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41A633B627D73CFB00D24C34 /* PaymentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentListViewController.swift; sourceTree = "<group>"; };
 		41A633B827D73E8000D24C34 /* PaymentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailViewController.swift; sourceTree = "<group>"; };
+		41AFA3B427E0766B008E4FD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		41AFA3B627E0992E008E4FD4 /* NewSymbolAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSymbolAddViewController.swift; sourceTree = "<group>"; };
 		41B8937827DA2B9900A0D5DE /* PaymentDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailTableViewCell.swift; sourceTree = "<group>"; };
-		41C5CCFC27D8C64200D06ECF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		41C5CD3A27D8DC9600D06ECF /* CalendarDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,7 +136,7 @@
 				41A633AB27D7392D00D24C34 /* Assets.xcassets */,
 				41A633AD27D7392D00D24C34 /* LaunchScreen.storyboard */,
 				41A633B027D7392D00D24C34 /* Info.plist */,
-				41C5CCFC27D8C64200D06ECF /* GoogleService-Info.plist */,
+				41AFA3B427E0766B008E4FD4 /* GoogleService-Info.plist */,
 				41A633A827D7392B00D24C34 /* PaymentPlanner.xcdatamodeld */,
 			);
 			path = PaymentPlanner;
@@ -143,6 +145,7 @@
 		41B8937A27DA2C5C00A0D5DE /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				41AFA3B627E0992E008E4FD4 /* NewSymbolAddViewController.swift */,
 				41B8937D27DA2CED00A0D5DE /* Calendar */,
 				41B8937B27DA2C9400A0D5DE /* Payment */,
 			);
@@ -161,8 +164,8 @@
 		41B8937C27DA2CB400A0D5DE /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				41A633B827D73E8000D24C34 /* PaymentDetailViewController.swift */,
 				41B8937827DA2B9900A0D5DE /* PaymentDetailTableViewCell.swift */,
+				41A633B827D73E8000D24C34 /* PaymentDetailViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -269,8 +272,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				41A633AF27D7392D00D24C34 /* LaunchScreen.storyboard in Resources */,
+				41AFA3B527E0766B008E4FD4 /* GoogleService-Info.plist in Resources */,
 				41A633AC27D7392D00D24C34 /* Assets.xcassets in Resources */,
-				41C5CCFD27D8C64200D06ECF /* GoogleService-Info.plist in Resources */,
 				41A633A727D7392B00D24C34 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +291,7 @@
 				41C5CD3B27D8DC9600D06ECF /* CalendarDetailViewController.swift in Sources */,
 				41A633B727D73CFB00D24C34 /* PaymentListViewController.swift in Sources */,
 				41A633A027D7392B00D24C34 /* AppDelegate.swift in Sources */,
+				41AFA3B727E0992E008E4FD4 /* NewSymbolAddViewController.swift in Sources */,
 				41B8937927DA2B9900A0D5DE /* PaymentDetailTableViewCell.swift in Sources */,
 				41A633A227D7392B00D24C34 /* SceneDelegate.swift in Sources */,
 			);

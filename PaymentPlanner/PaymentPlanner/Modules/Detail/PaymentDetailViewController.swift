@@ -13,9 +13,11 @@ class PaymentDetailViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UITextField!
     @IBOutlet weak var priceLabel: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var paymentPicker: UIPickerView!
+    @IBOutlet weak var pickerType: UITextField!
 
-    let data = ["Fatura","Maaş","AAA","BBB","CCC","XXX","YYY","ZZZ"]
+    var pickerView = UIPickerView()
+
+    let data = ["💸","🧾","🎯"," 🍔","🏠"]
 
     var chosenPayment = ""
     var chosenPaymentId: UUID?
@@ -26,10 +28,17 @@ class PaymentDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        paymentPicker.delegate = self
-        paymentPicker.dataSource = self
+        navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonItem.SystemItem.add,
+            target: self,
+            action: #selector(addButtonClicked))
+
+        pickerView.delegate = self
+        pickerView.dataSource = self
         descriptionLabel.text = ""
         priceLabel.text = ""
+
+        pickerType.inputView = pickerView
 
         if let selectedObject = selectedObject {
             if let description = selectedObject.value(forKey: "paymentType") as? String {
@@ -40,6 +49,9 @@ class PaymentDetailViewController: UIViewController {
             }
             if let date = selectedObject.value(forKey: "date") as? Date {
                 datePicker.date = date
+            }
+            if let type = selectedObject.value(forKey: "chosenType") as? String {
+                pickerType.text = type
             }
         }
         // let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -80,6 +92,7 @@ class PaymentDetailViewController: UIViewController {
         paymentObject.setValue(descriptionLabel.text, forKey: "paymentType")
         paymentObject.setValue(priceLabel.text, forKey: "price")
         paymentObject.setValue(datePicker.date, forKey: "date")
+        paymentObject.setValue(pickerType.text, forKey: "chosenType")
         
         do {
             try context.save()
@@ -94,24 +107,35 @@ class PaymentDetailViewController: UIViewController {
         
     }
 
+    @IBAction func addNewSymbol(_ sender: Any) {
+        //performSegue(withIdentifier: "toAddNewPickerValue", sender: nil)
+    }
+
+    @objc func addButtonClicked() {
+        performSegue(withIdentifier: "toAddNewPickerValue", sender: nil)
+    }
+
     /*@objc func hideKeyboard() {
      view.endEditing(true)
      }*/
 }
 
-extension PaymentDetailViewController: UIPickerViewDelegate {
+extension PaymentDetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return data[row]
     }
-}
-
-extension PaymentDetailViewController: UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return data.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerType.text = data[row]
+        pickerType.resignFirstResponder()
     }
 }

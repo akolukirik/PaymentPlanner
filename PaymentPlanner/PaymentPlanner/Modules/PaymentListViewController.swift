@@ -14,6 +14,7 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
     var paymentArray = [String]()
     var priceArray = [String]()
     var dateArray = [Date]()
+    var pickerArray = [String]()
     var selectedPayment = ""
     var selectedPaymentId : UUID?
     
@@ -58,6 +59,7 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
         cell.priceTypeLabel.text = paymentArray[indexPath.row]
         cell.priceLabel.text = ("\(priceArray[indexPath.row]) ₺ ")
         cell.dateLabel.text = formatter.string(from: dateArray[indexPath.row])
+        cell.pickerTypeLabel.text = pickerArray[indexPath.row]
         return cell
     }
     
@@ -86,6 +88,9 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
                     }
                     if let date = result.value(forKey: "date") as? Date {
                         self.dateArray.append(date)
+                    }
+                    if let picker = result.value(forKey: "chosenType") as? String {
+                        self.pickerArray.append(picker)
                     }
                     self.tableView.reloadData()
                 }
@@ -129,6 +134,7 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
                                 paymentArray.remove(at: indexPath.row)
                                 idArray.remove(at: indexPath.row)
                                 dateArray.remove(at: indexPath.row)
+                                pickerArray.remove(at: indexPath.row)
                                 self.tableView.reloadData()
                                 do {
                                     try context.save()
@@ -164,12 +170,5 @@ class PaymentListViewController: UIViewController, UITableViewDelegate, UITableV
             total += Int(priceArray[x]) ?? 0
         }
         toplamLabel.text = ("TOPLAM: \(String(total)) ₺")
-    }
-
-    @IBAction func dasdasdadsasdasd(_ sender: Any) {
-        print("\n\n\n\n")
-        print("**********")
-        print(dateArray.sorted())
-        print("**********")
     }
 }

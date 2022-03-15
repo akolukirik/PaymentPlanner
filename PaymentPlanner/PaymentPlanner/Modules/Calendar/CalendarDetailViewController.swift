@@ -19,7 +19,8 @@ class CalendarDetailViewController: UIViewController, FSCalendarDataSource, FSCa
         return formatter
     }()
 
-    var dateArray = [Date]()
+    var dateArray = [String]()
+    var datesWithEvent:[String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,9 +34,8 @@ class CalendarDetailViewController: UIViewController, FSCalendarDataSource, FSCa
         view.addSubview(calendar)
         self.calendar = calendar
 
+        getDateData()
     }
-
-    var datesWithEvent = ["20.03.2022"]
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
 
@@ -56,7 +56,7 @@ class CalendarDetailViewController: UIViewController, FSCalendarDataSource, FSCa
         if let results = try? context.fetch(fetchRequest) {
             if results.count > 0 {
                 for result in results as! [NSManagedObject] {
-                    if let date = result.value(forKey: "date") as? Date {
+                    if let date = result.value(forKey: "date") as? String {
                         self.dateArray.append(date)
                     }
                 }

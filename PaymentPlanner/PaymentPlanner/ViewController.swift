@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.passwordText.isSecureTextEntry = true
     }
-
+/*
     @IBAction func touchIdButtonClicked(_ sender: Any) {
         let authContext = LAContext()
         var error: NSError?
@@ -69,6 +69,6 @@ class ViewController: UIViewController {
         self.present(alert,
                      animated: true,
                      completion: nil)
-    }
+    }*/
 }
 

@@ -12,6 +12,8 @@ class PaymentDetailTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var pickerTypeLabel: UILabel!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
