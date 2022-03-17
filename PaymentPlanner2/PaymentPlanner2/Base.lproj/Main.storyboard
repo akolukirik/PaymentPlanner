@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PqX-Pq-buL">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PaymentPlanner2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="100"/>
+        </scene>
+        <!--Takvim-->
+        <scene sceneID="cox-pA-CAL">
+            <objects>
+                <viewController id="5ed-SR-e7o" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WXb-dP-iri">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="HWd-16-ISQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Takvim" image="calendar.circle.fill" catalog="system" id="FAS-4A-uB3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yCw-h8-zjZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1893" y="500"/>
+        </scene>
+        <!--Ödemeler-->
+        <scene sceneID="e3e-Ub-TsI">
+            <objects>
+                <viewController id="VVT-hM-4NY" customClass="ViewController" customModule="PaymentPlanner2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="R5k-On-GSK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gs-fx-dZb">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Ödemeler" id="dqL-EF-I82">
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="f15-Lh-UGT">
+                                            <connections>
+                                                <action selector="addPaymentButtonClicked:" destination="VVT-hM-4NY" id="ZFo-au-MOK"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xze-rb-DWA">
+                                <rect key="frame" x="0.0" y="88" width="414" height="672"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="90" id="K8y-H1-wBg">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K8y-H1-wBg" id="LoV-CJ-SlM">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toplam : xxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAz-1g-Rxf">
+                                <rect key="frame" x="20" y="771" width="374" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="2MH-Re-rpg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jis-5F-J9f"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RAz-1g-Rxf" firstAttribute="bottom" secondItem="jis-5F-J9f" secondAttribute="bottom" id="2Zv-V9-3Cs"/>
+                            <constraint firstItem="4gs-fx-dZb" firstAttribute="leading" secondItem="xze-rb-DWA" secondAttribute="leading" id="2Zx-V8-htm"/>
+                            <constraint firstItem="4gs-fx-dZb" firstAttribute="centerX" secondItem="R5k-On-GSK" secondAttribute="centerX" id="5q5-dy-DsN"/>
+                            <constraint firstItem="xze-rb-DWA" firstAttribute="top" secondItem="4gs-fx-dZb" secondAttribute="bottom" id="Rv6-3P-gTX"/>
+                            <constraint firstItem="RAz-1g-Rxf" firstAttribute="leading" secondItem="jis-5F-J9f" secondAttribute="leading" constant="20" id="StZ-1b-9qt"/>
+                            <constraint firstItem="4gs-fx-dZb" firstAttribute="trailing" secondItem="xze-rb-DWA" secondAttribute="trailing" id="dHQ-ii-uEy"/>
+                            <constraint firstItem="4gs-fx-dZb" firstAttribute="leading" secondItem="jis-5F-J9f" secondAttribute="leading" id="enR-62-aRC"/>
+                            <constraint firstItem="4gs-fx-dZb" firstAttribute="top" secondItem="jis-5F-J9f" secondAttribute="top" id="fwK-Vd-NIe"/>
+                            <constraint firstItem="RAz-1g-Rxf" firstAttribute="top" secondItem="xze-rb-DWA" secondAttribute="bottom" constant="11" id="hLx-Lu-fWj"/>
+                            <constraint firstItem="RAz-1g-Rxf" firstAttribute="trailing" secondItem="R5k-On-GSK" secondAttribute="trailingMargin" id="v5R-lM-IuB"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Ödemeler" image="wallet.pass.fill" catalog="system" id="QuQ-bi-r99">
+                        <color key="badgeColor" systemColor="systemGreenColor"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="paymentDetailsTableView" destination="xze-rb-DWA" id="X1H-8P-opx"/>
+                        <outlet property="totalValueLabel" destination="RAz-1g-Rxf" id="9Eu-Fp-Srh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WQx-S2-LGy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1892.753623188406" y="-272.54464285714283"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Ba4-LL-WRD">
+            <objects>
+                <tabBarController id="PqX-Pq-buL" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ecw-9I-XcD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="VVT-hM-4NY" kind="relationship" relationship="viewControllers" id="brh-VO-YDd"/>
+                        <segue destination="5ed-SR-e7o" kind="relationship" relationship="viewControllers" id="U8k-2u-U11"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dbf-ia-bly" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1001" y="97"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="calendar.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="wallet.pass.fill" catalog="system" width="115" height="128"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
