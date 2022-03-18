@@ -18,6 +18,9 @@
 		41950AD327E351E4000F7C6A /* PaymentPlanner2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41950AD127E351E4000F7C6A /* PaymentPlanner2.xcdatamodeld */; };
 		41950AD527E351EC000F7C6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41950AD427E351EC000F7C6A /* Assets.xcassets */; };
 		41950AD827E351EC000F7C6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41950AD627E351EC000F7C6A /* LaunchScreen.storyboard */; };
+		41FE311D27E47B820069460D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FE311B27E47B820069460D /* CalendarViewController.swift */; };
+		41FE311E27E47B820069460D /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41FE311C27E47B820069460D /* CalendarViewController.xib */; };
+		41FE312227E47CAD0069460D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 41FE312127E47CAD0069460D /* FSCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,8 @@
 		41950AD427E351EC000F7C6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41950AD727E351EC000F7C6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41950AD927E351EC000F7C6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41FE311B27E47B820069460D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		41FE311C27E47B820069460D /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41FE312227E47CAD0069460D /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +83,7 @@
 		4160B39527E35E1100039012 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				41FE311F27E47B890069460D /* Calendar */,
 				4157B92927E37B4E00E70E7B /* Add Payment */,
 				4160B39427E35DF600039012 /* Payment List */,
 			);
@@ -114,6 +121,15 @@
 			path = PaymentPlanner2;
 			sourceTree = "<group>";
 		};
+		41FE311F27E47B890069460D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				41FE311C27E47B820069460D /* CalendarViewController.xib */,
+				41FE311B27E47B820069460D /* CalendarViewController.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,6 +146,9 @@
 			dependencies = (
 			);
 			name = PaymentPlanner2;
+			packageProductDependencies = (
+				41FE312127E47CAD0069460D /* FSCalendar */,
+			);
 			productName = PaymentPlanner2;
 			productReference = 41950AC527E351E4000F7C6A /* PaymentPlanner2.app */;
 			productType = "com.apple.product-type.application";
@@ -158,6 +177,9 @@
 				Base,
 			);
 			mainGroup = 41950ABC27E351E4000F7C6A;
+			packageReferences = (
+				41FE312027E47CAD0069460D /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = 41950AC627E351E4000F7C6A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -174,6 +196,7 @@
 			files = (
 				41950AD827E351EC000F7C6A /* LaunchScreen.storyboard in Resources */,
 				41950AD527E351EC000F7C6A /* Assets.xcassets in Resources */,
+				41FE311E27E47B820069460D /* CalendarViewController.xib in Resources */,
 				4160B39227E35DBB00039012 /* PaymentListTableViewCell.xib in Resources */,
 				4157B92827E37A2700E70E7B /* AddNewPaymentViewController.xib in Resources */,
 				41950AD027E351E4000F7C6A /* Main.storyboard in Resources */,
@@ -192,6 +215,7 @@
 				41950AD327E351E4000F7C6A /* PaymentPlanner2.xcdatamodeld in Sources */,
 				41950ACD27E351E4000F7C6A /* ViewController.swift in Sources */,
 				41950AC927E351E4000F7C6A /* AppDelegate.swift in Sources */,
+				41FE311D27E47B820069460D /* CalendarViewController.swift in Sources */,
 				41950ACB27E351E4000F7C6A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,6 +436,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		41FE312027E47CAD0069460D /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		41FE312127E47CAD0069460D /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 41FE312027E47CAD0069460D /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		41950AD127E351E4000F7C6A /* PaymentPlanner2.xcdatamodeld */ = {

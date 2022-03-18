@@ -46,16 +46,15 @@ class ViewController: UIViewController {
             total += Int(priceArray[x]) ?? 0
         }
         totalValueLabel.text = ("TOPLAM: \(String(total)) ₺")
-        print(dateArray)
     }
     func totalPriceCalculateUpdate() {
         var total = 0
-        for x in 0..<priceArray.count - 1 {
+        for x in 0..<priceArray.count {
             total += Int(priceArray[x]) ?? 0
         }
         totalValueLabel.text = ("TOPLAM: \(String(total)) ₺")
     }
-   /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      if segue.identifier == "" {
      let destinationVC = segue.destination as! AddNewPaymentViewController
      destinationVC.chosenPayment = selectedPayment
@@ -68,11 +67,13 @@ class ViewController: UIViewController {
         idArray.removeAll(keepingCapacity: false)
         priceArray.removeAll(keepingCapacity: false)
         dateArray.removeAll(keepingCapacity: false)
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
+        pickerArray.removeAll(keepingCapacity: false)
+
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let context = appDelegate?.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
         fetchRequest.returnsObjectsAsFaults = false
-        if let results = try? context.fetch(fetchRequest) {
+        if let results = try? context?.fetch(fetchRequest) {
             if results.count > 0 {
                 for result in results as! [NSManagedObject] {
                     if let payment = result.value(forKey: "paymentDescription") as? String {
@@ -95,6 +96,14 @@ class ViewController: UIViewController {
             }
         }
     }
+   /* @objc func checkMarkButtonClicked (sender : UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+        }
+        else {
+            sender.isSelected = true
+        }
+    }*/
 }
 extension ViewController: UITableViewDelegate,UITableViewDataSource {
 
@@ -120,13 +129,16 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
      performSegue(withIdentifier: "", sender: nil)
      }*/
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
         if editingStyle == .delete {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
             let idString = idArray[indexPath.row].uuidString
+
             fetchRequest.predicate = NSPredicate(format: "id = %@", idString)
             fetchRequest.returnsObjectsAsFaults = false
+
             do {
                 let results = try context.fetch(fetchRequest)
                 if results.count > 0 {
@@ -138,9 +150,12 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
                                 idArray.remove(at: indexPath.row)
                                 dateArray.remove(at: indexPath.row)
                                 pickerArray.remove(at: indexPath.row)
+                                priceArray.remove(at: indexPath.row)
+                                //favoriteArray.remove(at: indexPath.row)
                                 self.paymentDetailsTableView.reloadData()
                                 do {
                                     try context.save()
+                                    print("sildimm")
                                 } catch {
                                     print("error")
                                 }
@@ -154,5 +169,7 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
             }
         }
         totalPriceCalculateUpdate()
+        print(totalPriceCalculateUpdate())
+        print(dateArray)
     }
 }

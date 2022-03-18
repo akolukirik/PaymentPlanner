@@ -26,10 +26,21 @@
         <!--Takvim-->
         <scene sceneID="cox-pA-CAL">
             <objects>
-                <viewController id="5ed-SR-e7o" sceneMemberID="viewController">
+                <viewController id="5ed-SR-e7o" customClass="CalendarViewController" customModule="PaymentPlanner2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WXb-dP-iri">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VxN-r2-vv8">
+                                <rect key="frame" x="174" y="563" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Button"/>
+                                <connections>
+                                    <action selector="buttonClicked:" destination="5ed-SR-e7o" eventType="touchUpInside" id="ste-k1-ZTh"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="HWd-16-ISQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
