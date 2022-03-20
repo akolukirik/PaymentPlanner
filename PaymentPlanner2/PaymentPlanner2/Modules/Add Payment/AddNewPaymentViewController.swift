@@ -48,6 +48,7 @@ class AddNewPaymentViewController: UIViewController {
             }
         }
     }
+
     func prepareSelectedObject() -> NSManagedObject? {
         guard let chosenPaymentId = chosenPaymentId else {
             return nil
@@ -64,6 +65,7 @@ class AddNewPaymentViewController: UIViewController {
 
         return results.first as? NSManagedObject
     }
+
     @IBAction func saveButtonClicked(_ sender: Any) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
@@ -79,12 +81,13 @@ class AddNewPaymentViewController: UIViewController {
         paymentObject.setValue(priceLabel.text, forKey: "price")
         paymentObject.setValue(datePicker.date, forKey: "date")
         paymentObject.setValue(paymentSymbolLabel.text, forKey: "chosenSymbol")
+
         do {
             try context.save()
-            print("uldi")
         } catch  {
-            print("aglaaa")
+            print("error")
         }
+
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
@@ -93,16 +96,21 @@ class AddNewPaymentViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
 extension AddNewPaymentViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return data[row]
     }
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return data.count
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         paymentSymbolLabel.text = data[row]
         paymentSymbolLabel.resignFirstResponder()

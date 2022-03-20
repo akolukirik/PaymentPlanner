@@ -17,9 +17,35 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vrw-ty-MEs">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ra-uv-477" customClass="FSCalendar" customModule="PaymentPlanner2" customModuleProvider="target">
+                            <rect key="frame" x="12" y="10" width="78" height="100"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="YHF-oa-YbS"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="5Ra-uv-477" secondAttribute="trailing" constant="324" id="5M9-m3-TZ7"/>
+                        <constraint firstItem="5Ra-uv-477" firstAttribute="top" secondItem="Vrw-ty-MEs" secondAttribute="top" constant="10" id="NKW-h0-FDu"/>
+                        <constraint firstItem="5Ra-uv-477" firstAttribute="leading" secondItem="Vrw-ty-MEs" secondAttribute="leading" constant="12" id="S6t-aA-wdb"/>
+                    </constraints>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="132" y="80"/>
+            <constraints>
+                <constraint firstItem="Vrw-ty-MEs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="StD-4C-IXb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Vrw-ty-MEs" secondAttribute="trailing" id="Vka-df-xJG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Vrw-ty-MEs" secondAttribute="bottom" id="YdP-y4-nnU"/>
+                <constraint firstItem="Vrw-ty-MEs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ygk-G2-cYK"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="79.6875"/>
         </view>
     </objects>
     <resources>

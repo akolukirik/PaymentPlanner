@@ -19,7 +19,6 @@
 		41950AD527E351EC000F7C6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41950AD427E351EC000F7C6A /* Assets.xcassets */; };
 		41950AD827E351EC000F7C6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41950AD627E351EC000F7C6A /* LaunchScreen.storyboard */; };
 		41FE311D27E47B820069460D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FE311B27E47B820069460D /* CalendarViewController.swift */; };
-		41FE311E27E47B820069460D /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41FE311C27E47B820069460D /* CalendarViewController.xib */; };
 		41FE312227E47CAD0069460D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 41FE312127E47CAD0069460D /* FSCalendar */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +37,6 @@
 		41950AD727E351EC000F7C6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41950AD927E351EC000F7C6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41FE311B27E47B820069460D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		41FE311C27E47B820069460D /* CalendarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +122,6 @@
 		41FE311F27E47B890069460D /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				41FE311C27E47B820069460D /* CalendarViewController.xib */,
 				41FE311B27E47B820069460D /* CalendarViewController.swift */,
 			);
 			path = Calendar;
@@ -196,7 +193,6 @@
 			files = (
 				41950AD827E351EC000F7C6A /* LaunchScreen.storyboard in Resources */,
 				41950AD527E351EC000F7C6A /* Assets.xcassets in Resources */,
-				41FE311E27E47B820069460D /* CalendarViewController.xib in Resources */,
 				4160B39227E35DBB00039012 /* PaymentListTableViewCell.xib in Resources */,
 				4157B92827E37A2700E70E7B /* AddNewPaymentViewController.xib in Resources */,
 				41950AD027E351E4000F7C6A /* Main.storyboard in Resources */,

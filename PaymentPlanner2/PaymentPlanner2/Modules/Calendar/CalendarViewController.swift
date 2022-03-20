@@ -11,7 +11,7 @@ import CoreData
 
 class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
 
-    fileprivate weak var calendar: FSCalendar!
+    @IBOutlet private weak var calendar: FSCalendar!
 
     fileprivate lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -23,14 +23,13 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let calendar = FSCalendar(frame: CGRect(x: 10,
-                                                y: 50,
-                                                width: 400,
-                                                height: 400))
         calendar.dataSource = self
         calendar.delegate = self
-        view.addSubview(calendar)
-        self.calendar = calendar
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
     }
 
     var datesWithEvent = ["03/03/2022","05/03/2022","09/03/2022","20/03/2022"]

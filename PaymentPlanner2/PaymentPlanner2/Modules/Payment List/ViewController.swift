@@ -15,54 +15,52 @@ class ViewController: UIViewController {
     var priceArray = [String]()
     var dateArray = [Date]()
     var pickerArray = [String]()
-    var selectedPayment = ""
-    var selectedPaymentId : UUID?
 
-    @IBOutlet weak var paymentDetailsTableView: UITableView!
-    @IBOutlet weak var totalValueLabel: UILabel!
+    @IBOutlet private weak var paymentDetailsTableView: UITableView!
+    @IBOutlet private weak var totalValueLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         paymentDetailsTableView.delegate = self
         paymentDetailsTableView.dataSource = self
         paymentDetailsTableView.register(UINib(nibName: "PaymentListTableViewCell", bundle: nil), forCellReuseIdentifier: "PaymentListTableViewCell")
         getData()
         totalPriceCalculate()
     }
+
     override func viewWillAppear(_ animated: Bool) {
+
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(getData), name: NSNotification.Name(rawValue: "newData"), object: nil)
         totalPriceCalculate()
     }
+
     @IBAction func addPaymentButtonClicked(_ sender: Any) {
-        selectedPayment = ""
+
+        navigateToPaymentDetail()
+    }
+
+    func totalPriceCalculate() {
+
+        var total = 0
+        for x in 0..<priceArray.count {
+            total += Int(priceArray[x]) ?? 0
+        }
+        totalValueLabel.text = ("TOPLAM: \(String(total)) ₺")
+    }
+
+    func navigateToPaymentDetail(selectedPayment: String = "", selectedPaymentId: UUID? = nil ) {
+
         let addPaymentVc = AddNewPaymentViewController.init(nibName: "AddNewPaymentViewController", bundle: nil)
+        addPaymentVc.chosenPayment = selectedPayment
+        addPaymentVc.chosenPaymentId = selectedPaymentId
         addPaymentVc.modalPresentationStyle = .fullScreen
         self.present(addPaymentVc, animated: true, completion: nil)
     }
-    func totalPriceCalculate() {
-        var total = 0
-        for x in 0..<priceArray.count {
-            total += Int(priceArray[x]) ?? 0
-        }
-        totalValueLabel.text = ("TOPLAM: \(String(total)) ₺")
-    }
-    func totalPriceCalculateUpdate() {
-        var total = 0
-        for x in 0..<priceArray.count {
-            total += Int(priceArray[x]) ?? 0
-        }
-        totalValueLabel.text = ("TOPLAM: \(String(total)) ₺")
-    }
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     if segue.identifier == "" {
-     let destinationVC = segue.destination as! AddNewPaymentViewController
-     destinationVC.chosenPayment = selectedPayment
-     destinationVC.chosenPaymentId = selectedPaymentId
-     }
-     selectedPaymentId = nil
-     }*/
+
     @objc func getData() {
+
         paymentArray.removeAll(keepingCapacity: false)
         idArray.removeAll(keepingCapacity: false)
         priceArray.removeAll(keepingCapacity: false)
@@ -96,43 +94,41 @@ class ViewController: UIViewController {
             }
         }
     }
-   /* @objc func checkMarkButtonClicked (sender : UIButton) {
-        if sender.isSelected {
-            sender.isSelected = false
-        }
-        else {
-            sender.isSelected = true
-        }
-    }*/
 }
+
 extension ViewController: UITableViewDelegate,UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return paymentArray.count
     }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentListTableViewCell", for: indexPath) as! PaymentListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentListTableViewCell", for: indexPath) as? PaymentListTableViewCell
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
-        cell.descriptionLabel.text = paymentArray[indexPath.row]
-        cell.priceLabel.text = ("\(priceArray[indexPath.row]) ₺ ")
-        cell.symbolLabel.text = pickerArray[indexPath.row]
-        cell.dateLabel.text = formatter.string(from: dateArray[indexPath.row])
-        return cell
+        cell?.descriptionLabel.text = paymentArray[indexPath.row]
+        cell?.priceLabel.text = ("\(priceArray[indexPath.row]) ₺ ")
+        cell?.symbolLabel.text = pickerArray[indexPath.row]
+        cell?.dateLabel.text = formatter.string(from: dateArray[indexPath.row])
+        return cell!
     }
-    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     selectedPayment = paymentArray[indexPath.row]
-     selectedPaymentId = idArray[indexPath.row]
-     performSegue(withIdentifier: "", sender: nil)
-     }*/
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedPayment = paymentArray[indexPath.row]
+        let selectedPaymentId = idArray[indexPath.row]
+
+        navigateToPaymentDetail(selectedPayment: selectedPayment, selectedPaymentId: selectedPaymentId)
+    }
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
         if editingStyle == .delete {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let context = appDelegate.persistentContainer.viewContext
+            let appDelegate = UIApplication.shared.delegate as? AppDelegate
+            let context = appDelegate?.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
             let idString = idArray[indexPath.row].uuidString
 
@@ -140,12 +136,12 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
             fetchRequest.returnsObjectsAsFaults = false
 
             do {
-                let results = try context.fetch(fetchRequest)
-                if results.count > 0 {
+                let results = try context?.fetch(fetchRequest)
+                if results?.count ?? 0 > 0 {
                     for result in results as! [NSManagedObject] {
                         if let id = result.value(forKey: "id") as? UUID {
                             if id == idArray[indexPath.row] {
-                                context.delete(result)
+                                context?.delete(result)
                                 paymentArray.remove(at: indexPath.row)
                                 idArray.remove(at: indexPath.row)
                                 dateArray.remove(at: indexPath.row)
@@ -154,8 +150,7 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
                                 //favoriteArray.remove(at: indexPath.row)
                                 self.paymentDetailsTableView.reloadData()
                                 do {
-                                    try context.save()
-                                    print("sildimm")
+                                    try context?.save()
                                 } catch {
                                     print("error")
                                 }
@@ -168,8 +163,8 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
                 print("error")
             }
         }
-        totalPriceCalculateUpdate()
-        print(totalPriceCalculateUpdate())
+        totalPriceCalculate()
+        print(totalPriceCalculate())
         print(dateArray)
     }
 }
