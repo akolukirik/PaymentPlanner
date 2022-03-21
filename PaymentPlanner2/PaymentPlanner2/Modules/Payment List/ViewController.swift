@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         for x in 0..<priceArray.count {
             total += Int(priceArray[x]) ?? 0
         }
-        totalValueLabel.text = ("TOPLAM: \(String(total)) ₺")
+        totalValueLabel.text = ("Total: \(String(total)) ₺")
     }
 
     func navigateToPaymentDetail(selectedPayment: String = "", selectedPaymentId: UUID? = nil ) {

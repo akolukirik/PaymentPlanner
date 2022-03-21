@@ -16,7 +16,7 @@ class AddNewPaymentViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
 
     var pickerView = UIPickerView()
-    let data = ["💸","🧾","🎯"," 🍔","🏠"]
+    let data = ["💸","🧾","🎯"," 🍔","🏡","👾","👔","🚘"]
 
     var chosenPayment = ""
     var chosenPaymentId: UUID?
@@ -47,6 +47,12 @@ class AddNewPaymentViewController: UIViewController {
                 paymentSymbolLabel.text = type
             }
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
     }
 
     func prepareSelectedObject() -> NSManagedObject? {

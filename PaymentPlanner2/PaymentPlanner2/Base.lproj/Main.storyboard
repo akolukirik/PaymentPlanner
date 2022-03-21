@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +24,7 @@
             </objects>
             <point key="canvasLocation" x="132" y="100"/>
         </scene>
-        <!--Takvim-->
+        <!--Calendar-->
         <scene sceneID="cox-pA-CAL">
             <objects>
                 <viewController id="5ed-SR-e7o" customClass="CalendarViewController" customModule="PaymentPlanner2" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,53 +32,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCc-7h-NqF">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OCc-7h-NqF">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VxN-r2-vv8">
-                                        <rect key="frame" x="150" y="356" width="67" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Button"/>
-                                        <connections>
-                                            <action selector="buttonClicked:" destination="5ed-SR-e7o" eventType="touchUpInside" id="ste-k1-ZTh"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FU6-U3-bJF" customClass="FSCalendar">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FU6-U3-bJF" customClass="FSCalendar">
                                         <rect key="frame" x="12" y="10" width="390" height="400"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="400" id="Rdt-hv-hRZ"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="FU6-U3-bJF" firstAttribute="top" secondItem="OCc-7h-NqF" secondAttribute="top" constant="10" id="IlG-Vq-yMh"/>
-                                    <constraint firstItem="FU6-U3-bJF" firstAttribute="leading" secondItem="OCc-7h-NqF" secondAttribute="leading" constant="12" id="Jld-aV-y3r"/>
-                                    <constraint firstAttribute="trailing" secondItem="FU6-U3-bJF" secondAttribute="trailing" constant="12" id="uWT-NM-T2y"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HWd-16-ISQ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="OCc-7h-NqF" firstAttribute="top" secondItem="HWd-16-ISQ" secondAttribute="top" id="LEJ-Dn-oYL"/>
-                            <constraint firstItem="OCc-7h-NqF" firstAttribute="leading" secondItem="HWd-16-ISQ" secondAttribute="leading" id="cjx-Un-xcL"/>
-                            <constraint firstItem="HWd-16-ISQ" firstAttribute="bottom" secondItem="OCc-7h-NqF" secondAttribute="bottom" id="lro-Ur-d3q"/>
-                            <constraint firstItem="HWd-16-ISQ" firstAttribute="trailing" secondItem="OCc-7h-NqF" secondAttribute="trailing" id="v9W-bb-e5t"/>
-                        </constraints>
+                        <color key="backgroundColor" systemColor="systemGray2Color"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Takvim" image="calendar.circle.fill" catalog="system" id="FAS-4A-uB3"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" id="FAS-4A-uB3">
+                        <imageReference key="image" image="calendar.circle" catalog="system" symbolScale="large" renderingMode="hierarchical-single">
+                            <hierarchicalColors>
+                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
                     <connections>
                         <outlet property="calendar" destination="FU6-U3-bJF" id="gYm-I3-Ihm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yCw-h8-zjZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1893" y="500"/>
+            <point key="canvasLocation" x="1892.753623188406" y="499.55357142857139"/>
         </scene>
-        <!--Ödemeler-->
+        <!--Payments-->
         <scene sceneID="e3e-Ub-TsI">
             <objects>
                 <viewController id="VVT-hM-4NY" customClass="ViewController" customModule="PaymentPlanner2" customModuleProvider="target" sceneMemberID="viewController">
@@ -87,9 +75,19 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4gs-fx-dZb">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" systemColor="systemBackgroundColor"/>
+                                    <color key="textShadowColor" systemColor="labelColor"/>
+                                </textAttributes>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <color key="textColor" red="0.73333333329999995" green="0.66666666669999997" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </textAttributes>
                                 <items>
-                                    <navigationItem title="Ödemeler" id="dqL-EF-I82">
+                                    <navigationItem title="Payments" id="dqL-EF-I82">
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="f15-Lh-UGT">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <connections>
                                                 <action selector="addPaymentButtonClicked:" destination="VVT-hM-4NY" id="ZFo-au-MOK"/>
                                             </connections>
@@ -97,32 +95,34 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xze-rb-DWA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xze-rb-DWA">
                                 <rect key="frame" x="0.0" y="88" width="414" height="672"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <color key="separatorColor" systemColor="systemOrangeColor"/>
+                                <color key="sectionIndexTrackingBackgroundColor" systemColor="systemPinkColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="90" id="K8y-H1-wBg">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="90"/>
+                                        <rect key="frame" x="20" y="49.5" width="374" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K8y-H1-wBg" id="LoV-CJ-SlM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Toplam : xxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAz-1g-Rxf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total: xxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAz-1g-Rxf">
                                 <rect key="frame" x="20" y="771" width="374" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="2MH-Re-rpg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jis-5F-J9f"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="RAz-1g-Rxf" firstAttribute="bottom" secondItem="jis-5F-J9f" secondAttribute="bottom" id="2Zv-V9-3Cs"/>
                             <constraint firstItem="4gs-fx-dZb" firstAttribute="leading" secondItem="xze-rb-DWA" secondAttribute="leading" id="2Zx-V8-htm"/>
@@ -136,8 +136,15 @@
                             <constraint firstItem="RAz-1g-Rxf" firstAttribute="trailing" secondItem="R5k-On-GSK" secondAttribute="trailingMargin" id="v5R-lM-IuB"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Ödemeler" image="wallet.pass.fill" catalog="system" id="QuQ-bi-r99">
-                        <color key="badgeColor" systemColor="systemGreenColor"/>
+                    <tabBarItem key="tabBarItem" title="Payments" id="QuQ-bi-r99">
+                        <imageReference key="image" image="wallet.pass" catalog="system" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="paymentDetailsTableView" destination="xze-rb-DWA" id="X1H-8P-opx"/>
@@ -168,13 +175,28 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="wallet.pass.fill" catalog="system" width="115" height="128"/>
+        <image name="calendar.circle" catalog="system" width="128" height="121"/>
+        <image name="wallet.pass" catalog="system" width="115" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
