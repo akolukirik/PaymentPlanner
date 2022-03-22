@@ -33,14 +33,14 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
         super.viewWillAppear(animated)
         datesWithEvent.removeAll(keepingCapacity: false)
         NotificationCenter.default.addObserver(self, selector: #selector(getDateData), name: NSNotification.Name(rawValue: "newData"), object: nil)
-        qweqwe()
+        selectedDays()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
 
-    func qweqwe() {
+    func selectedDays() {
         for x in 0..<dateArray.count {
             let newDateFormat = dateFormatter.string(from: dateArray[x])
             datesWithEvent.append("\(newDateFormat)")
@@ -58,7 +58,6 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
     @objc func getDateData() {
         dateArray.removeAll(keepingCapacity: false)
-
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let context = appDelegate?.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")

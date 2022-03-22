@@ -18,6 +18,7 @@
 		41950AD327E351E4000F7C6A /* PaymentPlanner2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41950AD127E351E4000F7C6A /* PaymentPlanner2.xcdatamodeld */; };
 		41950AD527E351EC000F7C6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41950AD427E351EC000F7C6A /* Assets.xcassets */; };
 		41950AD827E351EC000F7C6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41950AD627E351EC000F7C6A /* LaunchScreen.storyboard */; };
+		41AC081427E9B14900810E47 /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC081327E9B14900810E47 /* LoginScreenViewController.swift */; };
 		41FE311D27E47B820069460D /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41FE311B27E47B820069460D /* CalendarViewController.swift */; };
 		41FE312227E47CAD0069460D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 41FE312127E47CAD0069460D /* FSCalendar */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		41950AD427E351EC000F7C6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41950AD727E351EC000F7C6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41950AD927E351EC000F7C6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41AC081327E9B14900810E47 /* LoginScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
 		41FE311B27E47B820069460D /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 		4160B39527E35E1100039012 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				41AC081527E9B14E00810E47 /* Login */,
 				41FE311F27E47B890069460D /* Calendar */,
 				4157B92927E37B4E00E70E7B /* Add Payment */,
 				4160B39427E35DF600039012 /* Payment List */,
@@ -117,6 +120,14 @@
 				41950AD127E351E4000F7C6A /* PaymentPlanner2.xcdatamodeld */,
 			);
 			path = PaymentPlanner2;
+			sourceTree = "<group>";
+		};
+		41AC081527E9B14E00810E47 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				41AC081327E9B14900810E47 /* LoginScreenViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		41FE311F27E47B890069460D /* Calendar */ = {
@@ -208,6 +219,7 @@
 			files = (
 				4157B92727E37A2700E70E7B /* AddNewPaymentViewController.swift in Sources */,
 				4160B39127E35DBB00039012 /* PaymentListTableViewCell.swift in Sources */,
+				41AC081427E9B14900810E47 /* LoginScreenViewController.swift in Sources */,
 				41950AD327E351E4000F7C6A /* PaymentPlanner2.xcdatamodeld in Sources */,
 				41950ACD27E351E4000F7C6A /* ViewController.swift in Sources */,
 				41950AC927E351E4000F7C6A /* AppDelegate.swift in Sources */,
