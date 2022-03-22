@@ -26,8 +26,8 @@
                                     <action selector="loginButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1c8-ca-Xiq"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hoşgeldin Sahip" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tP2-xI-Pfb">
-                                <rect key="frame" x="20" y="245" width="374" height="51"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tP2-xI-Pfb">
+                                <rect key="frame" x="20" y="302" width="374" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="Fue-i0-Rda"/>
                                 </constraints>
@@ -45,7 +45,7 @@
                             <constraint firstItem="K7I-Eg-68S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="153" id="QxX-Zl-5q9"/>
                             <constraint firstItem="tP2-xI-Pfb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="SUa-XF-LXV"/>
                             <constraint firstItem="tP2-xI-Pfb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="X0T-ne-7Rj"/>
-                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="201" id="vOB-ty-Y5P"/>
+                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="258" id="vOB-ty-Y5P"/>
                         </constraints>
                     </view>
                     <connections>
