@@ -1,128 +1,128 @@
 //
-//  AddNewPaymentViewController.swift
+//  AddNewLongTermPaymentViewController.swift
 //  PaymentPlanner2
 //
-//  Created by ali on 17.03.2022.
+//  Created by ali on 28.03.2022.
 //
 
 import UIKit
 import CoreData
 
-class AddNewPaymentViewController: UIViewController {
-    
-    @IBOutlet weak var descriptionLabel: UITextField!
-    @IBOutlet weak var priceLabel: UITextField!
-    @IBOutlet weak var paymentSymbolLabel: UITextField!
-    @IBOutlet weak var datePicker: UIDatePicker!
-    
-    var pickerView = UIPickerView()
-    let data = ["💸","🧾","🎯"," 🍔","🏡","👾","👔","🚘"]
-    
-    var chosenPayment = ""
-    var chosenPaymentId: UUID?
-    lazy var selectedObject: NSManagedObject? = {
+class AddNewLongTermPaymentViewController: UIViewController {
+
+    @IBOutlet weak var descriptionLabelLT: UITextField!
+    @IBOutlet weak var priceLabelLT: UITextField!
+    @IBOutlet weak var paymentSymbolLabelLT: UITextField!
+    @IBOutlet weak var datePickerLT: UIDatePicker!
+
+    var pickerViewLT = UIPickerView()
+    let dataLT = ["💸","🧾","🎯"," 🍔","🏡","👾","👔","🚘"]
+
+    var chosenPaymentLT = ""
+    var chosenPaymentIdLT: UUID?
+    lazy var selectedObjectLT: NSManagedObject? = {
         return prepareSelectedObject()
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        paymentSymbolLabel.inputView = pickerView
-        pickerView.delegate = self
-        pickerView.dataSource = self
-        descriptionLabel.text = ""
-        priceLabel.text = ""
-        
-        if let selectedObject = selectedObject {
+
+        paymentSymbolLabelLT.inputView = pickerViewLT
+        pickerViewLT.delegate = self
+        pickerViewLT.dataSource = self
+        descriptionLabelLT.text = ""
+        priceLabelLT.text = ""
+
+        if let selectedObject = selectedObjectLT {
             if let description = selectedObject.value(forKey: "paymentDescription") as? String {
-                descriptionLabel.text = description
+                descriptionLabelLT.text = description
             }
             if let price = selectedObject.value(forKey: "price") as? String {
-                priceLabel.text = String(price)
+                priceLabelLT.text = String(price)
             }
             if let date = selectedObject.value(forKey: "date") as? Date {
-                datePicker.date = date
+                datePickerLT.date = date
             }
             if let type = selectedObject.value(forKey: "chosenSymbol") as? String {
-                paymentSymbolLabel.text = type
+                paymentSymbolLabelLT.text = type
             }
         }
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tap)
     }
-    
+
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
-    
+
     func prepareSelectedObject() -> NSManagedObject? {
-        guard let chosenPaymentId = chosenPaymentId else {
+        guard let chosenPaymentId = chosenPaymentIdLT else {
             return nil
-            
         }
-        
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let context = appDelegate?.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LongTermDB")
         let idString = chosenPaymentId.uuidString
         fetchRequest.predicate = NSPredicate(format: "id = %@", idString)
         fetchRequest.returnsObjectsAsFaults = false
-        
+
         guard let results = try? context?.fetch(fetchRequest) else { return nil }
-        
+
         return results.first as? NSManagedObject
     }
-    
+
     @IBAction func saveButtonClicked(_ sender: Any) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         let paymentObject: NSManagedObject
-        
-        if let selectedObject = selectedObject {
+
+        if let selectedObject = selectedObjectLT {
             paymentObject = selectedObject
-            paymentObject.setValue(chosenPaymentId, forKey: "id")
+            paymentObject.setValue(chosenPaymentIdLT, forKey: "id")
         } else {
-            paymentObject = NSEntityDescription.insertNewObject(forEntityName: "PaymentDB", into: context)
+            paymentObject = NSEntityDescription.insertNewObject(forEntityName: "LongTermDB", into: context)
             paymentObject.setValue(UUID(), forKey: "id")
         }
-        
-        paymentObject.setValue(descriptionLabel.text, forKey: "paymentDescription")
-        paymentObject.setValue(priceLabel.text, forKey: "price")
-        paymentObject.setValue(datePicker.date, forKey: "date")
-        paymentObject.setValue(paymentSymbolLabel.text, forKey: "chosenSymbol")
-        
+
+        paymentObject.setValue(descriptionLabelLT.text, forKey: "paymentDescription")
+        paymentObject.setValue(priceLabelLT.text, forKey: "price")
+        paymentObject.setValue(datePickerLT.date, forKey: "date")
+        paymentObject.setValue(paymentSymbolLabelLT.text, forKey: "chosenSymbol")
+
         do {
             try context.save()
+            print(context)
         } catch  {
             print("error")
         }
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
+
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataLT"), object: nil)
         self.navigationController?.popViewController(animated: true)
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func backButtonclicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 }
 
-extension AddNewPaymentViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    
+extension AddNewLongTermPaymentViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return data[row]
+        return dataLT[row]
     }
-    
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return data.count
+        return dataLT.count
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        paymentSymbolLabel.text = data[row]
-        paymentSymbolLabel.resignFirstResponder()
+        paymentSymbolLabelLT.text = dataLT[row]
+        paymentSymbolLabelLT.resignFirstResponder()
     }
 }
+

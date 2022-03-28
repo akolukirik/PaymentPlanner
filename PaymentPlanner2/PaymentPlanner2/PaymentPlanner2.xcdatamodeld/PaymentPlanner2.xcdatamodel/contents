@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LongTermDB" representedClassName="LongTermDB" syncable="YES" codeGenerationType="class">
+        <attribute name="chosenSymbol" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="paymentDescription" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="PaymentDB" representedClassName="PaymentDB" syncable="YES" codeGenerationType="class">
         <attribute name="chosenSymbol" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="favorities" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="paymentDescription" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="PaymentDB" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="PaymentDB" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="LongTermDB" positionX="-63" positionY="36" width="128" height="104"/>
     </elements>
 </model>
