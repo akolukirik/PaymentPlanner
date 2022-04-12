@@ -5,9 +5,8 @@ Track your Payments
 I developed this app to improve myself. You can easily track your payments. You can also use the calendar to see the payments you will pay.
 
 ## Project Images
-<img src="/images/project.gif" width="293" height="633"> <img src="/images/img1.png" width="293" height="633"> <img src="/images/img2.png" width="293" height="633">
-
-<img src="/images/img3.png" width="293" height="633"> <img src="/images/img4.png" width="293" height="633">
+<img src="/images/project.gif" width="276" height="597"> <img src="/images/img1.png" width="276" height="597"> <img src="/images/img2.png" width="276" height="597">
+<img src="/images/img3.png" width="276" height="597"> <img src="/images/img4.png" width="276" height="597">
 
 ## List of Frameworks
 | Framework | Description |
