@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     var idArray = [UUID]()
     var paymentArray = [String]()
-    var priceArray = [String]()
+    var priceArray = [Float]()
     var dateArray = [Date]()
     var pickerArray = [String]()
 
@@ -41,11 +41,11 @@ class ViewController: UIViewController {
     }
 
     func totalPriceCalculate() {
-        var total = 0
+        var total: Float = 0.0
         for x in 0..<priceArray.count {
-            total += Int(priceArray[x]) ?? 0
+            total += priceArray[x]
         }
-        totalValueLabel.text = ("Total: \(String(total)) ₺")
+        totalValueLabel.text = ("Total: \(total)₺")
     }
 
     func navigateToPaymentDetail(selectedPayment: String = "", selectedPaymentId: UUID? = nil ) {
@@ -76,11 +76,12 @@ class ViewController: UIViewController {
                     if let id = result.value(forKey: "id") as? UUID {
                         self.idArray.append(id)
                     }
-                    if let price = result.value(forKey: "price") as? String {
+                    if let price = result.value(forKey: "price") as? Float {
                         self.priceArray.append(price)
                     }
                     if let date = result.value(forKey: "date") as? Date {
                         self.dateArray.append(date)
+                        print(date)
                     }
                     if let picker = result.value(forKey: "chosenSymbol") as? String {
                         self.pickerArray.append(picker)

@@ -12,7 +12,7 @@ class LongTermPaymentsViewController: UIViewController {
 
     var idArrayLT = [UUID]()
     var paymentArrayLT = [String]()
-    var priceArrayLT = [String]()
+    var priceArrayLT = [Float]()
     var dateArrayLT = [Date]()
     var pickerArrayLT = [String]()
 
@@ -41,11 +41,11 @@ class LongTermPaymentsViewController: UIViewController {
     }
 
     func longTermTotalPriceCalculate() {
-        var total = 0
+        var total: Float = 0.0
         for x in 0..<priceArrayLT.count {
-            total += Int(priceArrayLT[x]) ?? 0
+            total += priceArrayLT[x]
         }
-        longTermValueLabel.text = ("Total: \(String(total)) ₺")
+        longTermValueLabel.text = ("Total: \(String(total))₺")
     }
 
     func navigateToPaymentDetail(selectedPayment: String = "", selectedPaymentId: UUID? = nil ) {
@@ -76,7 +76,7 @@ class LongTermPaymentsViewController: UIViewController {
                     if let id = result.value(forKey: "id") as? UUID {
                         self.idArrayLT.append(id)
                     }
-                    if let price = result.value(forKey: "price") as? String {
+                    if let price = result.value(forKey: "price") as? Float {
                         self.priceArrayLT.append(price)
                     }
                     if let date = result.value(forKey: "date") as? Date {

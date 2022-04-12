@@ -37,7 +37,7 @@ class AddNewLongTermPaymentViewController: UIViewController {
             if let description = selectedObject.value(forKey: "paymentDescription") as? String {
                 descriptionLabelLT.text = description
             }
-            if let price = selectedObject.value(forKey: "price") as? String {
+            if let price = selectedObject.value(forKey: "price") as? Float {
                 priceLabelLT.text = String(price)
             }
             if let date = selectedObject.value(forKey: "date") as? Date {
@@ -85,7 +85,7 @@ class AddNewLongTermPaymentViewController: UIViewController {
         }
 
         paymentObject.setValue(descriptionLabelLT.text, forKey: "paymentDescription")
-        paymentObject.setValue(priceLabelLT.text, forKey: "price")
+        paymentObject.setValue(Float(priceLabelLT.text ?? ""), forKey: "price")
         paymentObject.setValue(datePickerLT.date, forKey: "date")
         paymentObject.setValue(paymentSymbolLabelLT.text, forKey: "chosenSymbol")
 

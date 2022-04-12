@@ -5,17 +5,17 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="paymentDescription" optional="YES" attributeType="String"/>
-        <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <entity name="PaymentDB" representedClassName="PaymentDB" syncable="YES" codeGenerationType="class">
         <attribute name="chosenSymbol" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="paymentDescription" optional="YES" attributeType="String"/>
-        <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="PaymentDB" positionX="-63" positionY="-18" width="128" height="104"/>
         <element name="LongTermDB" positionX="-63" positionY="36" width="128" height="104"/>
+        <element name="PaymentDB" positionX="-63" positionY="-18" width="128" height="104"/>
     </elements>
 </model>
