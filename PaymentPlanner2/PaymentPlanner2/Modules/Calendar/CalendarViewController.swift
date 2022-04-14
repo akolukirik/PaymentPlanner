@@ -45,6 +45,7 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        calendar.reloadData()
     }
 
     func selectedDays() {

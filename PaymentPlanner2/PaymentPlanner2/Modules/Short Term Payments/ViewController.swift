@@ -67,6 +67,8 @@ class ViewController: UIViewController {
         let context = appDelegate?.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PaymentDB")
         fetchRequest.returnsObjectsAsFaults = false
+        let sort = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
         if let results = try? context?.fetch(fetchRequest) {
             if results.count > 0 {
                 for result in results as! [NSManagedObject] {
@@ -81,7 +83,6 @@ class ViewController: UIViewController {
                     }
                     if let date = result.value(forKey: "date") as? Date {
                         self.dateArray.append(date)
-                        print(date)
                     }
                     if let picker = result.value(forKey: "chosenSymbol") as? String {
                         self.pickerArray.append(picker)

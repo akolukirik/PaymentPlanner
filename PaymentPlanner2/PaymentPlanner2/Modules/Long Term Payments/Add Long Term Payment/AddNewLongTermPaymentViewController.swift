@@ -72,37 +72,48 @@ class AddNewLongTermPaymentViewController: UIViewController {
     }
 
     @IBAction func saveButtonClicked(_ sender: Any) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let context = appDelegate.persistentContainer.viewContext
-        let paymentObject: NSManagedObject
+        if descriptionLabelLT.text != "" && priceLabelLT.text != "" && paymentSymbolLabelLT.text != "" {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let context = appDelegate.persistentContainer.viewContext
+            let paymentObject: NSManagedObject
 
-        if let selectedObject = selectedObjectLT {
-            paymentObject = selectedObject
-            paymentObject.setValue(chosenPaymentIdLT, forKey: "id")
-        } else {
-            paymentObject = NSEntityDescription.insertNewObject(forEntityName: "LongTermDB", into: context)
-            paymentObject.setValue(UUID(), forKey: "id")
+            if let selectedObject = selectedObjectLT {
+                paymentObject = selectedObject
+                paymentObject.setValue(chosenPaymentIdLT, forKey: "id")
+            } else {
+                paymentObject = NSEntityDescription.insertNewObject(forEntityName: "LongTermDB", into: context)
+                paymentObject.setValue(UUID(), forKey: "id")
+            }
+
+            paymentObject.setValue(descriptionLabelLT.text, forKey: "paymentDescription")
+            paymentObject.setValue(Float(priceLabelLT.text ?? ""), forKey: "price")
+            paymentObject.setValue(datePickerLT.date, forKey: "date")
+            paymentObject.setValue(paymentSymbolLabelLT.text, forKey: "chosenSymbol")
+
+            do {
+                try context.save()
+            } catch  {
+                print("error")
+            }
+
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataLT"), object: nil)
+            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
         }
-
-        paymentObject.setValue(descriptionLabelLT.text, forKey: "paymentDescription")
-        paymentObject.setValue(Float(priceLabelLT.text ?? ""), forKey: "price")
-        paymentObject.setValue(datePickerLT.date, forKey: "date")
-        paymentObject.setValue(paymentSymbolLabelLT.text, forKey: "chosenSymbol")
-
-        do {
-            try context.save()
-            print(context)
-        } catch  {
-            print("error")
+        else {
+            makeAlert(title: "Boş Alan", message: "Lüfen bütün alanları doldurunuz.")
         }
-
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newDataLT"), object: nil)
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func backButtonclicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+
+    func makeAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

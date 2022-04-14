@@ -72,36 +72,45 @@ class AddNewPaymentViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let context = appDelegate.persistentContainer.viewContext
-        let paymentObject: NSManagedObject
-        
-        if let selectedObject = selectedObject {
-            paymentObject = selectedObject
-            paymentObject.setValue(chosenPaymentId, forKey: "id")
-        } else {
-            paymentObject = NSEntityDescription.insertNewObject(forEntityName: "PaymentDB", into: context)
-            paymentObject.setValue(UUID(), forKey: "id")
+        if descriptionLabel.text != "" && priceLabel.text != "" && paymentSymbolLabel.text != "" {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let context = appDelegate.persistentContainer.viewContext
+            let paymentObject: NSManagedObject
+
+            if let selectedObject = selectedObject {
+                paymentObject = selectedObject
+                paymentObject.setValue(chosenPaymentId, forKey: "id")
+            } else {
+                paymentObject = NSEntityDescription.insertNewObject(forEntityName: "PaymentDB", into: context)
+                paymentObject.setValue(UUID(), forKey: "id")
+            }
+            paymentObject.setValue(descriptionLabel.text, forKey: "paymentDescription")
+            paymentObject.setValue(Float(priceLabel.text ?? ""), forKey: "price")
+            paymentObject.setValue(datePicker.date, forKey: "date")
+            paymentObject.setValue(paymentSymbolLabel.text, forKey: "chosenSymbol")
+            do {
+                try context.save()
+            } catch  {
+                print("error")
+            }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
+            self.navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
         }
-        
-        paymentObject.setValue(descriptionLabel.text, forKey: "paymentDescription")
-        paymentObject.setValue(Float(priceLabel.text ?? ""), forKey: "price")
-        paymentObject.setValue(datePicker.date, forKey: "date")
-        paymentObject.setValue(paymentSymbolLabel.text, forKey: "chosenSymbol")
-        
-        do {
-            try context.save()
-        } catch  {
-            print("error")
+        else {
+            makeAlert(title: "Boş Alan", message: "Lüfen bütün alanları doldurunuz.")
         }
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newData"), object: nil)
-        self.navigationController?.popViewController(animated: true)
-        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func backButtonclicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+
+    func makeAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

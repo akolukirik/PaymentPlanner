@@ -18,34 +18,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7I-Eg-68S">
-                                <rect key="frame" x="153" y="328" width="108" height="31"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WELCOME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tP2-xI-Pfb">
+                                <rect key="frame" x="57" y="267" width="300" height="51"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="dDX-oe-NXY"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="hlC-Kz-iVC"/>
+                                    <constraint firstAttribute="height" constant="51" id="udZ-ms-uZt"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Login"/>
-                                <connections>
-                                    <action selector="loginButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1c8-ca-Xiq"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tP2-xI-Pfb">
-                                <rect key="frame" x="20" y="258" width="374" height="51"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K7I-Eg-68S">
+                                <rect key="frame" x="135" y="479" width="145" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="VdF-sq-DPh"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="63" id="mrD-67-SfA"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Login" buttonSize="large"/>
+                                <connections>
+                                    <action selector="loginButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1c8-ca-Xiq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="0zn-Xk-fa2"/>
-                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="258" id="H4D-n5-dq7"/>
-                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="HaY-my-bkU"/>
-                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="centerX" secondItem="K7I-Eg-68S" secondAttribute="centerX" id="KCs-EL-H4D"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="K7I-Eg-68S" secondAttribute="bottom" constant="377" id="KKE-ju-UlZ"/>
-                            <constraint firstItem="K7I-Eg-68S" firstAttribute="top" secondItem="tP2-xI-Pfb" secondAttribute="bottom" constant="19" id="N0d-wA-CwP"/>
-                            <constraint firstItem="K7I-Eg-68S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="153" id="cAI-9g-BbM"/>
+                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="centerX" secondItem="K7I-Eg-68S" secondAttribute="centerX" id="7sW-4V-44p"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="K7I-Eg-68S" secondAttribute="trailing" constant="134" id="B1O-Uw-imO"/>
+                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="Iyr-nb-abW"/>
+                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LPt-nb-3RU"/>
+                            <constraint firstItem="K7I-Eg-68S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="135" id="Rgc-ve-RrQ"/>
+                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="Tvs-fb-XT3"/>
+                            <constraint firstItem="K7I-Eg-68S" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="135" id="f9P-Xy-I1G"/>
+                            <constraint firstItem="tP2-xI-Pfb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="267" id="qNI-Lc-xZI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="K7I-Eg-68S" secondAttribute="bottom" constant="194" id="wgi-D1-8yg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tP2-xI-Pfb" secondAttribute="trailing" constant="57" id="yhr-M3-Iez"/>
                         </constraints>
                     </view>
                     <connections>
@@ -54,7 +62,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000" y="-707"/>
+            <point key="canvasLocation" x="1000.0000000000001" y="-707.60869565217399"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="cox-pA-CAL">
