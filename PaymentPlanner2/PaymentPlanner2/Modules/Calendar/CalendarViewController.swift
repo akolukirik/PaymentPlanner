@@ -15,7 +15,6 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
 
     var dateArray = [Date]()
     var datesWithEvent = [String]()
-
     var longTermArray = [Date]()
     var longTermDatesWithEvent = [String]()
 
@@ -39,6 +38,8 @@ class CalendarViewController: UIViewController, FSCalendarDataSource, FSCalendar
         longTermDatesWithEvent.removeAll(keepingCapacity: false)
         NotificationCenter.default.addObserver(self, selector: #selector(getDateData), name: NSNotification.Name(rawValue: "newData"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(getLongTermDateData), name: NSNotification.Name(rawValue: "newDataLT"), object: nil)
+        getDateData()
+        getLongTermDateData()
         selectedDays()
         selectedLongTermDays()
     }
